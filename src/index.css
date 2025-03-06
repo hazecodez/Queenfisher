@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "GothamFont";
+  src: url("/fonts/GOTHAM-BOLD.OTF") format("opentype");
+}
+
+body {
+  font-family: "GothamFont", sans-serif;
+
+}
+p {
+  transform: scaleY(1.2) scaleX(0.9);
+}
+
+.custom-heading {
+  font-weight: 800;
+  color: #461072;
+  transform: scaleY(1.2) scaleX(0.8);
+}
