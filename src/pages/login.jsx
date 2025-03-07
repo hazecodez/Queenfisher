@@ -70,7 +70,7 @@ function Login() {
   return (
     <div className="bg-white mt-32 p-6 opacity-90 rounded-3xl shadow-lg w-80 mx-auto text-center">
       <h2 className="text-xl font-bold uppercase text-[#461072]">
-        Tell us about yourself
+        Tell us a little bit about about yourself
       </h2>
       <hr className="border-[#461072] w-32 mx-auto mt-2" />
 
