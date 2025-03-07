@@ -4,6 +4,7 @@ export default function thankyou() {
   localStorage.removeItem("agreedTerms");
   localStorage.removeItem("userData");
   localStorage.removeItem("formCompleted");
+  localStorage.removeItem("legallyAged");
   return (
     <div className="bg-white flex justify-center h-[250px] mt-18 opacity-80 pt-8 pb-8 pr-4 pl-6 rounded-4xl shadow-lg w-72 text-center">
       <div className="flex flex-col justify-center items-center">

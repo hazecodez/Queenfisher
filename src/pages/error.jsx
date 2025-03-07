@@ -24,7 +24,7 @@ export default function Error() {
         </h2>
         <hr className="w-32 text-[#461072] mt-2" />
 
-        <p className="mt-2 uppercase font-bold text-sm mt-4 mb-2">
+        <p className="uppercase font-bold text-sm mt-4 mb-2">
           would you like to try again?
         </p>
         <button

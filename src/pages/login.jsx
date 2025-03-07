@@ -12,36 +12,8 @@ function Login() {
     email: "",
   });
 
-  const indianStates = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-  ];
+  const indianStates = ["Goa", "Maharashtra"];
+  const indianCities = ["Mumbai", "Pune","Goa"];
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const validateNumber = (number) => /^[0-9]{10}$/.test(number);
@@ -57,7 +29,7 @@ function Login() {
       return toast.error("Enter a valid 10-digit phone number.");
     if (!indianStates.includes(formData.state))
       return toast.error("Select a valid Indian state.");
-    if (!formData.city.trim()) return toast.error("City is required.");
+    if (!indianCities.includes(formData.city)) return toast.error("City is required.");
     if (!validateEmail(formData.email))
       return toast.error("Enter a valid email address.");
 
@@ -106,15 +78,28 @@ function Login() {
             </option>
           ))}
         </select>
+        <select
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+          className="w-full p-2 rounded-xl uppercase outline-none"
+        >
+          <option value="">City</option>
+          {indianCities.map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
 
-        <input
+        {/* <input
           type="text"
           name="city"
           placeholder="City"
           value={formData.city}
           onChange={handleChange}
           className="w-full p-2 rounded-xl uppercase outline-none"
-        />
+        /> */}
 
         <input
           type="email"
