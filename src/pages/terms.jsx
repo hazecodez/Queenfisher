@@ -23,7 +23,7 @@ function Terms() {
     <div className="bg-white mt-10 flex flex-col justify-start h-auto max-h-[350px] overflow-y-auto opacity-80 p-6 rounded-4xl shadow-lg w-72 text-center scrollbar-hide">
       <div className="flex flex-col uppercase pb-6">
         {/* Title is now visible */}
-        <h2 className="text-lg font-bold pb-4">Terms & Conditions</h2>
+        <h2 className="text-lg font-bold pb-4 text-[#461072]">Terms & Conditions</h2>
         <p className="pb-8 text-xs">
           Thank you for your interest in participating in the contest. United
           Breweries Limited (UBL) respects your privacy and in your interest
