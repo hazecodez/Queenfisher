@@ -20,7 +20,7 @@ function Terms() {
   };
 
   return (
-    <div className="bg-white mt-10 flex flex-col justify-start h-auto max-h-[450px] overflow-y-auto opacity-80 p-6 rounded-4xl shadow-lg w-72 text-center scrollbar-hide">
+    <div className="bg-white mt-10 flex flex-col justify-start h-auto max-h-[350px] overflow-y-auto opacity-80 p-6 rounded-4xl shadow-lg w-72 text-center scrollbar-hide">
       <div className="flex flex-col uppercase pb-6">
         {/* Title is now visible */}
         <h2 className="text-lg font-bold pb-4">Terms & Conditions</h2>

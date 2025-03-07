@@ -29,8 +29,8 @@ export default function Congrats() {
   };
 
   return (
-    <div className="flex mt-40 flex-col bg-white h-[550px] opacity-80 pt-8 pb-8 pr-4 pl-6 rounded-4xl shadow-lg w-72 text-center">
-      <div className="flex flex-col justify-center items-center pt-14">
+    <div className="flex mt-40 flex-col bg-white h-[450px] opacity-80 pt-8 pb-8 pr-4 pl-6 rounded-4xl shadow-lg w-72 text-center">
+      <div className="flex flex-col justify-center items-center pt-8">
         <img src="/congrats.png" className="w-48" alt="" />
         <hr className="w-32 text-[#461072]" />
       </div>
