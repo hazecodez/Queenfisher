@@ -6,10 +6,12 @@ import Error from "./pages/error";
 import Thanks from "./pages/thankyou";
 import ProtectedRoute from "./Components/Protected";
 import AuthProtectedRoute from "./Components/AuthProtected";
+import { Toaster } from "sonner";
 
 export default function App() {
   return (
     <Router>
+      <Toaster position="top-center" richColors />
       <div
         className="h-screen w-screen bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: "url('/Queens Day BG.png')" }}

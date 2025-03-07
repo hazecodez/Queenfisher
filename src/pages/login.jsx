@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "sonner";
 
 function Login() {
   const navigate = useNavigate();
@@ -11,131 +11,128 @@ function Login() {
     city: "",
     email: "",
   });
-  const [error, setError] = useState({
-    name: false,
-    number: false,
-    state: false,
-    city: false,
-    email: false,
-  });
 
   const indianStates = [
-    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
   ];
 
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  const validateNumber = (number) => {
-    return /^[0-9]{10}$/.test(number);
-  };
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateNumber = (number) => /^[0-9]{10}$/.test(number);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setError((prev) => ({
-      ...prev,
-      [name]:
-        name === "email" ? !validateEmail(value) :
-        name === "number" ? !validateNumber(value) :
-        name === "state" ? !indianStates.includes(value) :
-        value.trim() === "",
-    }));
   };
 
-  const isFormValid =
-    formData.name &&
-    formData.number &&
-    formData.state &&
-    formData.city &&
-    formData.email &&
-    !error.name &&
-    !error.number &&
-    !error.state &&
-    !error.city &&
-    !error.email;
+  const handleNext = () => {
+    if (!formData.name.trim()) return toast.error("Name is required.");
+    if (!validateNumber(formData.number))
+      return toast.error("Enter a valid 10-digit phone number.");
+    if (!indianStates.includes(formData.state))
+      return toast.error("Select a valid Indian state.");
+    if (!formData.city.trim()) return toast.error("City is required.");
+    if (!validateEmail(formData.email))
+      return toast.error("Enter a valid email address.");
 
-    const handleNext = () => {
-      if (!isFormValid) return;
-    
-      // Save form data to localStorage
-      localStorage.setItem("formCompleted", "true");
-      localStorage.setItem("userData", JSON.stringify(formData));
-    
-      // Navigate to Congrats page
-      navigate("/congrats", { state: formData });
-    };
-    
+    localStorage.setItem("formCompleted", "true");
+    localStorage.setItem("userData", JSON.stringify(formData));
+
+    navigate("/congrats", { state: formData });
+  };
 
   return (
-    <div className="bg-white mt-40 h-[550px] opacity-80 pt-8 pb-8 pr-4 pl-6 rounded-4xl shadow-lg w-72 text-center">
-      <h2 className="custom-heading text-xl font-bold uppercase text-[#461072] mt-12">Tell us a little bit about yourself</h2>
-      <div className="flex justify-center">
-      <hr className="text-[#461072] w-32 mt-2"/>
+    <div className="bg-white mt-32 p-6 opacity-90 rounded-3xl shadow-lg w-80 mx-auto text-center">
+      <h2 className="text-xl font-bold uppercase text-[#461072]">
+        Tell us about yourself
+      </h2>
+      <hr className="border-[#461072] w-32 mx-auto mt-2" />
+
+      <div className="space-y-3 mt-4">
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+          className="w-full p-2 rounded-xl uppercase outline-none"
+        />
+
+        <input
+          type="number"
+          name="number"
+          placeholder="Phone Number"
+          value={formData.number}
+          onChange={handleChange}
+          className="w-full p-2 rounded-xl uppercase outline-none"
+        />
+
+        <select
+          name="state"
+          value={formData.state}
+          onChange={handleChange}
+          className="w-full p-2 rounded-xl uppercase outline-none"
+        >
+          <option value="">State</option>
+          {indianStates.map((state) => (
+            <option key={state} value={state}>
+              {state}
+            </option>
+          ))}
+        </select>
+
+        <input
+          type="text"
+          name="city"
+          placeholder="City"
+          value={formData.city}
+          onChange={handleChange}
+          className="w-full p-2 rounded-xl uppercase outline-none"
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email ID"
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full p-2 rounded-xl uppercase outline-none"
+        />
+
+        <button
+          onClick={handleNext}
+          className="w-24 mt-4 rounded-md text-white uppercase font-bold bg-[#CC3C3C] hover:bg-[#a83232] transition"
+        >
+          Next
+        </button>
       </div>
-      
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        value={formData.name}
-        onChange={handleChange}
-        className="mt-3 w-full p-2 bg-white rounded-xl uppercase outline-none"
-      />
-      {error.name && <p className="text-[#CC3C3C] text-sm">Name is required.</p>}
-
-      <input
-        type="number"
-        name="number"
-        placeholder="Phone Number"
-        value={formData.number}
-        onChange={handleChange}
-        className="mt-3 w-full p-2 rounded-xl uppercase outline-none"
-      />
-      {error.number && <p className="text-[#CC3C3C] text-sm">Enter a valid 10-digit phone number.</p>}
-
-      <select
-        name="state"
-        value={formData.state}
-        onChange={handleChange}
-        className="mt-3 w-full p-2 bg-white rounded-xl uppercase outline-none"
-      >
-        <option value="">State</option>
-        {indianStates.map((state) => (
-          <option key={state} value={state}>{state}</option>
-        ))}
-      </select>
-      {error.state && <p className="text-[#CC3C3C] text-sm">Select a valid Indian state.</p>}
-
-      <input
-        type="text"
-        name="city"
-        placeholder="City"
-        value={formData.city}
-        onChange={handleChange}
-        className="mt-3 w-full p-2 bg-white rounded-xl uppercase outline-none"
-      />
-      {error.city && <p className="text-[#CC3C3C] text-sm">City is required.</p>}
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Email ID"
-        value={formData.email}
-        onChange={handleChange}
-        className="mt-3 w-full p-2 bg-white rounded-xl uppercase outline-none"
-      />
-      {error.email && <p className="text-[#CC3C3C] text-sm">Enter a valid email address.</p>}
-
-      <button
-        onClick={handleNext}
-        className={`mt-6 px-6 py-1  rounded text-white uppercase font-bold ${isFormValid ? "bg-[#CC3C3C]" : "bg-gray-400 cursor-not-allowed"}`}
-        disabled={!isFormValid}
-      >
-        Next
-      </button>
-      </div>
+    </div>
   );
 }
 
