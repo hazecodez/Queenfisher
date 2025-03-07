@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Congrats() {
   const location = useLocation();
   const navigate = useNavigate();
   const formData = location.state || {};
+  const [loading, setLoading] = useState(false);
 
   const handleExportToGoogleSheets = async () => {
+    setLoading(true);
     console.log("Form Data:", formData);
 
     const GOOGLE_SHEETS_URL = import.meta.env.VITE_GOOGLE_SHEETS_URL;
@@ -40,12 +42,18 @@ export default function Congrats() {
         <p className="mt-1 uppercase font-bold text-sm">
           That's quite the vibe check.
         </p>
-        <button
-          onClick={handleExportToGoogleSheets}
-          className="mt-6 px-4 w-24 bg-[#CC3C3C] text-white uppercase font-bold rounded"
-        >
-          Submit
-        </button>
+        {loading ? (
+          <button className="mt-6 px-4 w-40 text-white uppercase font-bold rounded bg-gray-400 cursor-not-allowed">
+            Submitting...
+          </button>
+        ) : (
+          <button
+            onClick={handleExportToGoogleSheets}
+            className="mt-6 px-4 w-24 text-white uppercase font-bold rounded bg-[#CC3C3C]"
+          >
+            Submit
+          </button>
+        )}
       </div>
     </div>
   );
