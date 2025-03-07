@@ -56,10 +56,17 @@ function Login() {
     !error.city &&
     !error.email;
 
-  const handleNext = () => {
-    if (!isFormValid) return;
-    navigate("/congrats", { state: formData });
-  };
+    const handleNext = () => {
+      if (!isFormValid) return;
+    
+      // Save form data to localStorage
+      localStorage.setItem("formCompleted", "true");
+      localStorage.setItem("userData", JSON.stringify(formData));
+    
+      // Navigate to Congrats page
+      navigate("/congrats", { state: formData });
+    };
+    
 
   return (
     <div className="bg-white mt-40 h-[550px] opacity-80 pt-8 pb-8 pr-4 pl-6 rounded-4xl shadow-lg w-72 text-center">

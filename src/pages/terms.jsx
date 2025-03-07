@@ -20,11 +20,11 @@ function Terms() {
   };
 
   return (
-    <div className="bg-white mt-10 flex flex-col justify-start h-auto max-h-[450px] overflow-y-auto opacity-80 p-6 rounded-4xl shadow-lg w-72 text-center">
+    <div className="bg-white mt-10 flex flex-col justify-start h-auto max-h-[450px] overflow-y-auto opacity-80 p-6 rounded-4xl shadow-lg w-72 text-center scrollbar-hide">
       <div className="flex flex-col uppercase pb-6">
         {/* Title is now visible */}
         <h2 className="text-lg font-bold pb-4">Terms & Conditions</h2>
-        <p className="pb-4 text-xs">
+        <p className="pb-8 text-xs">
           Thank you for your interest in participating in the contest. United
           Breweries Limited (UBL) respects your privacy and in your interest
           informs you that it may process data about you that can be termed as
@@ -59,7 +59,7 @@ function Terms() {
           data for the purpose described above.
         </p>
       </div>
-  
+
       <div className="text-left font-bold uppercase">
         <label className="flex items-start space-x-2">
           <input
@@ -72,7 +72,7 @@ function Terms() {
             I accept the terms & conditions, privacy & cookie policy
           </span>
         </label>
-  
+
         <label className="flex items-start space-x-2 mt-3">
           <input
             type="checkbox"
@@ -81,11 +81,12 @@ function Terms() {
             className="appearance-none w-6 h-3 bg-gray-300 cursor-pointer checked:bg-[#461072] transition-all"
           />
           <span className="text-xs text-gray-600">
-            I agree that I am above the legal drinking age applicable in my state
+            I agree that I am above the legal drinking age applicable in my
+            state
           </span>
         </label>
       </div>
-  
+
       <div className="flex items-center justify-center">
         <button
           onClick={handleNext}
@@ -101,7 +102,6 @@ function Terms() {
       </div>
     </div>
   );
-  
 }
 
 export default Terms;
