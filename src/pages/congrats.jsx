@@ -8,30 +8,23 @@ export default function Congrats() {
 
   const handleExportToGoogleSheets = async () => {
     console.log("Form Data:", formData);
-  
+
     const GOOGLE_SHEETS_URL = import.meta.env.VITE_GOOGLE_SHEETS_URL;
-    
+
     try {
-      const response = await fetch(GOOGLE_SHEETS_URL, {
+      await fetch(GOOGLE_SHEETS_URL, {
         method: "POST",
+        mode: "no-cors", // Disables CORS
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
-      const result = await response.json();
-      console.log("Google Sheets Response:", result);
-  
-      if (result.status === "success") {
-        navigate("/thanks"); // Redirect to success page
-      } else {
-        throw new Error("Failed to save data");
-      }
+
+      navigate("/thanks"); // Go to success page
     } catch (error) {
       console.error("Error:", error);
-      navigate("/error"); // Redirect to error page
+      navigate("/error"); // Go to error page
     }
   };
-  
 
   return (
     <div className="flex mt-40 flex-col bg-white h-[550px] opacity-80 pt-8 pb-8 pr-4 pl-6 rounded-4xl shadow-lg w-72 text-center">
